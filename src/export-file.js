@@ -50,7 +50,7 @@ class ExportComponent {
         return new Promise(async (res, rej) => {
             try {
                 const sourcePath = path.join(__dirname, './../database', this.paths[id]);
-                const destinationPath = path.join(await this.getDestinationPath(), this.paths[id]);
+                const destinationPath = path.join(await this.getDestinationPath());
                 if (process.platform == 'win32') {
                     fs.copyFileSync(sourcePath, destinationPath);
                 }  else if (process.platform == 'linux') {
