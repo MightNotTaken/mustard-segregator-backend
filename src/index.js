@@ -9,6 +9,8 @@ let exec = require('child_process').exec
 
 const exporter = new ExportComponent()
 
+console.log('Export path', exporter.getDestinationPath())
+
 const port = process.env.PORT || 3030
 
 const app = express()
