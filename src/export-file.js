@@ -32,6 +32,8 @@ class ExportComponent {
 
     getDestinationPath = function() {
         return new Promise(async (res, rej) => {
+
+            return res(path.join(__dirname, './../output'))
             if (process.platform == 'win32') {
                 return res(path.join(__dirname, './../output'))
             } else if (process.platform == 'linux') {
