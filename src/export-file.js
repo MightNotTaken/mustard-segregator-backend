@@ -38,7 +38,7 @@ class ExportComponent {
                 const drives = fs.readdirSync('/media/nvidia')
                 console.log(drives)
                 if (drives.length) {
-                    res(drives[0]);
+                    res(path.join('media/nvidia', drives[0]));
                 } else {
                     rej();
                 }
