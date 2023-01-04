@@ -57,6 +57,7 @@ class ExportComponent {
                 fs.copyFileSync(sourcePath, destinationPath);
                 res(true);
             } catch (error) {
+                console.error(error)
                 rej(error)
             }
         });
