@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-
+const child_process = require('child_process')
 class ExportComponent {
     total = 0;
     paths = []
@@ -32,8 +32,6 @@ class ExportComponent {
 
     getDestinationPath = function() {
         return new Promise(async (res, rej) => {
-
-            return res(path.join(__dirname, './../output'))
             if (process.platform == 'win32') {
                 return res(path.join(__dirname, './../output'))
             } else if (process.platform == 'linux') {
@@ -51,10 +49,13 @@ class ExportComponent {
     export = function(id) {
         return new Promise(async (res, rej) => {
             try {
-                
                 const sourcePath = path.join(__dirname, './../database', this.paths[id]);
                 const destinationPath = path.join(await this.getDestinationPath(), this.paths[id]);
-                fs.copyFileSync(sourcePath, destinationPath);
+                if (process.platform == 'win32') {
+                    fs.copyFileSync(sourcePath, destinationPath);
+                }  else if (process.platform == 'linux') {
+                    child_process.execSync(`cp ${sourcePath} ${destinationPath}`)
+                }
                 res(true);
             } catch (error) {
                 console.error(error)
