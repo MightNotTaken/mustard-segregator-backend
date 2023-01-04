@@ -49,9 +49,7 @@ class ExportComponent {
     export = function(id) {
         return new Promise(async (res, rej) => {
             try {
-                if (this.path[id] === 'index.json') {
-                    return res(true);
-                }
+                
                 const sourcePath = path.join(__dirname, './../database', this.paths[id]);
                 const destinationPath = path.join(await this.getDestinationPath(), this.paths[id]);
                 fs.copyFileSync(sourcePath, destinationPath);
