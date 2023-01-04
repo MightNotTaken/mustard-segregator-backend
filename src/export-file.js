@@ -52,9 +52,9 @@ class ExportComponent {
                 const sourcePath = path.join(__dirname, './../database', this.paths[id]);
                 const destinationPath = path.join(await this.getDestinationPath());
                 if (process.platform == 'win32') {
-                    fs.copyFileSync(sourcePath, destinationPath);
+                    fs.copyFileSync(sourcePath, destinationPath, this.paths[id]);
                 }  else if (process.platform == 'linux') {
-                    fs.copyFileSync(sourcePath, destinationPath)
+                    fs.copyFileSync(sourcePath, destinationPath, this.paths[id])
                 }
                 res(true);
             } catch (error) {
