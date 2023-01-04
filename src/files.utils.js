@@ -5,6 +5,7 @@ const p = (segment) => {
     return path.join(__dirname, segment)
 }
 
+
 const dateToNumber = (date = null) => {
     if (!date) {
         date = new Date()
@@ -77,6 +78,17 @@ const addNewEntry = (data) => {
             rej(error)
         }
     });
+}
+
+
+const getTotalFiles = () => {
+    return new Promise(async (res, rej) => {
+        try {
+            
+        } catch (error) {
+            rej(error)
+        }
+    })
 }
 
 
