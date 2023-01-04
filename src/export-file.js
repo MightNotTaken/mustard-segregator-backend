@@ -36,7 +36,6 @@ class ExportComponent {
                 return res(path.join(__dirname, './../output'))
             } else if (process.platform == 'linux') {
                 const drives = fs.readdirSync('/media/nvidia')
-                console.log(drives)
                 if (drives.length) {
                     res(path.join('/media/nvidia', drives[0]));
                 } else {
