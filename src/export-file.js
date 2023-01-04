@@ -54,7 +54,7 @@ class ExportComponent {
                 if (process.platform == 'win32') {
                     fs.copyFileSync(sourcePath, destinationPath);
                 }  else if (process.platform == 'linux') {
-                    child_process.execSync(`cp ${sourcePath} ${destinationPath}`)
+                    fa.copyFileSync(sourcePath, destinationPath)
                 }
                 res(true);
             } catch (error) {
