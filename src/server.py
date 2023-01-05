@@ -75,6 +75,11 @@ def start_electron_app():
 # check to see if this is the main thread of execution
 if __name__ == '__main__':
 
+    node_thread = threading.Thread(target=start_node_server())
+    node_thread.start()
+
+    electron_thread = threading.Thread(target=start_electron_app)
+    electron_thread.start()
     # Create a thread and attach the method that captures the image frames, to it
     process_thread = threading.Thread(target=captureFrames)
     process_thread.daemon = True
@@ -86,9 +91,3 @@ if __name__ == '__main__':
     # While it can be run on any feasible IP, IP = 0.0.0.0 renders the web app on
     # the host machine's localhost and is discoverable by other machines on the same network 
     app.run("0.0.0.0", port="8000")
-
-    node_thread = threading.Thread(target=start_node_server())
-    node_thread.start()
-
-    electron_thread = threading.Thread(target=start_electron_app)
-    electron_thread.start()
