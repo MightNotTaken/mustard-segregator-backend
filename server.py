@@ -1,7 +1,6 @@
 import cv2
 import time
 import threading
-from os import system
 from flask import Response, Flask, after_this_request
 # Image frame sent to the Flask object
 global video_frame
@@ -65,15 +64,9 @@ def streamFrames():
         return response
     return Response(encodeFrame(), mimetype = "multipart/x-mixed-replace; boundary=frame")
 
-
-def start_node_server():
-    system("node /home/nvidia/project/mustard-segregator-backend")
-
-def start_electron_app():
-    system("electron /home/nvidia/project/mustard-seed-tester")
-
 # check to see if this is the main thread of execution
 if __name__ == '__main__':
+
     # Create a thread and attach the method that captures the image frames, to it
     process_thread = threading.Thread(target=captureFrames)
     process_thread.daemon = True
